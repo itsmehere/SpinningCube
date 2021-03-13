@@ -1,9 +1,16 @@
 import sys
 import math
 import pygame as pygame
-from cubeProj import cubeProjection
+import numpy as numpy
+from cubeProj import *
 
 pygame.init()
+
+# Constants
+WIDTH = 600
+HEIGHT = 600
+DEPTH = 600
+CENTER_OFFSET = 100
 
 # Colors
 gray = (203, 203, 203)
@@ -11,7 +18,11 @@ gray = (203, 203, 203)
 running = True
 while running:
 
-    cubeProj = cubeProjection(500, 500, pygame)
+    cubeProj = CubeProjection(WIDTH, HEIGHT, pygame)
+
+    cube = Cube(WIDTH, HEIGHT, DEPTH, CENTER_OFFSET)
+    cubeProj.addLayer(1, cube.generateVertices())
+    cubeProj.display()
 
     # Check to see if the simulation has been exited
     for event in pygame.event.get():
