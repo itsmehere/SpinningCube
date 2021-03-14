@@ -2,7 +2,7 @@ import sys
 import math
 import pygame as pg
 import numpy as np
-from cubeProj import *
+from cubeProj1 import *
 
 pg.init()
 
@@ -23,8 +23,8 @@ while running:
     # Create Cube
     cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
     cube.generateVertices(CENTER_OFFSET)
+    cube.rotateAroundY(theta)
     cube.displayCube()
-
 
     # Check to see if the simulation has been exited
     for event in pg.event.get():
@@ -36,8 +36,6 @@ while running:
 
     # Increment angle
     theta += 0.01
-
-cube.printNodes()
 
 # Done! Time to quit.
 pg.quit()
