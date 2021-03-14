@@ -1,10 +1,10 @@
 import sys
 import math
-import pygame as pygame
-import numpy as numpy
+import pygame as pg
+import numpy as np
 from cubeProj import *
 
-pygame.init()
+pg.init()
 
 # Constants
 WIDTH = 600
@@ -15,22 +15,29 @@ CENTER_OFFSET = 100
 # Colors
 gray = (203, 203, 203)
 
+theta = 0
+
 running = True
 while running:
 
-    cubeProj = CubeProjection(WIDTH, HEIGHT, pygame)
+    # Create Cube
+    cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
+    cube.generateVertices(CENTER_OFFSET)
+    cube.displayCube()
 
-    cube = Cube(WIDTH, HEIGHT, DEPTH, CENTER_OFFSET)
-    cubeProj.addLayer(1, cube.generateVertices())
-    cubeProj.display()
 
     # Check to see if the simulation has been exited
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
             running = False
 
     # Update screen
-    pygame.display.update()
+    pg.display.update()
+
+    # Increment angle
+    theta += 0.01
+
+cube.printNodes()
 
 # Done! Time to quit.
-pygame.quit()
+pg.quit()
