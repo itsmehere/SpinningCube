@@ -18,12 +18,14 @@ gray = (203, 203, 203)
 theta = 0
 
 running = True
+
 while running:
 
     # Create Cube
     cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
     cube.generateVertices(CENTER_OFFSET)
-    cube.rotateAroundY(theta)
+    cube.createCompositeMatrix(theta)
+    cube.applyTransformation()
     cube.displayCube()
 
     # Check to see if the simulation has been exited
