@@ -12,37 +12,39 @@ HEIGHT = 600
 DEPTH = 600
 CENTER_OFFSET = 50
 
+THETA_INCREMENT_X = 0.0015
+THETA_INCREMENT_Y = 0.0015
+THETA_INCREMENT_Z = 0.0015
+
 def main():
 
-    theta = 0.1
+    # Create Canvas
+    canvas = pg.display.set_mode((WIDTH, HEIGHT))
+    canvas.fill((0, 0, 0))
+    pg.display.set_caption('Analysis Project - 3D Spinning Cube')
+
+
+    # Create Cube
+    cube = Cube(WIDTH, HEIGHT, DEPTH, pg, canvas)
+    cube.generateVertices(CENTER_OFFSET)
+    
+
     running = True
-
+    
     while running:
-        # Create Cube
-        cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
 
-        # Create the points that form the cube
-        cube.generateVertices(CENTER_OFFSET)
-        cube.generateEdges(CENTER_OFFSET)
-
-        # Create the transformation, apply it, and display it on the canvas
-        cube.createCompositeMatrix(theta)
+        # Apply transformation and display it
+        cube.createCompositeMatrix(THETA_INCREMENT_X, THETA_INCREMENT_Y, THETA_INCREMENT_Z)
         cube.applyTransformation()
         cube.displayCube()
-        
 
         # Check to see if the simulation has been exited
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
 
-        # Update screen
         pg.display.update()
 
-        # Increment angle
-        theta += 0.005
-
-    # Done! Time to quit.
     pg.quit()
 
 
