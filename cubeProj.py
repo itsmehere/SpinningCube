@@ -11,7 +11,7 @@ class Cube:
         self.compositeMatrix = ""
 
         self.canvas = self.pg.display.set_mode((self.w, self.h))
-        self.canvas.fill((203, 203, 203))
+        self.canvas.fill((0, 0, 0))
         self.pg.display.set_caption('Analysis Project - 3D Spinning Cube')
     
 
@@ -36,6 +36,10 @@ class Cube:
         for vertex in vertices:
             self.addPoint(vertex)
 
+    
+    def generateEdges(self, CENTER_OFFSET):
+        # Generate edges of the cube
+        return NotImplementedError
 
     def createCompositeMatrix(self, theta):
         cos = np.cos(theta)
@@ -80,4 +84,4 @@ class Cube:
 
     def displayCube(self):
         for node in self.nodes:
-            self.pg.draw.circle(self.canvas, (0, 0, 0), (int(node[0]), int(node[1])), 4, 0)
+            self.pg.draw.circle(self.canvas, (255, 255, 255), (int(node[0]), int(node[1])), 4, 0)

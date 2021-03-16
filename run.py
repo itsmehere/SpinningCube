@@ -12,21 +12,23 @@ HEIGHT = 600
 DEPTH = 600
 CENTER_OFFSET = 50
 
-# Colors
-gray = (203, 203, 203)
-
 theta = 0.1
-
 running = True
 
 while running:
 
     # Create Cube
     cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
+
+    # Create the points that form the cube
     cube.generateVertices(CENTER_OFFSET)
+    cube.generateEdges(CENTER_OFFSET)
+
+    # Create the transformation, apply it, and display it on the canvas
     cube.createCompositeMatrix(theta)
     cube.applyTransformation()
     cube.displayCube()
+    
 
     # Check to see if the simulation has been exited
     for event in pg.event.get():
