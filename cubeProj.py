@@ -41,6 +41,7 @@ class Cube:
         # Generate edges of the cube
         return NotImplementedError
 
+
     def createCompositeMatrix(self, theta):
         cos = np.cos(theta)
         sin = np.sin(theta)
