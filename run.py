@@ -2,7 +2,7 @@ import sys
 import math
 import pygame as pg
 import numpy as np
-from cubeProj1 import *
+from cubeProj import *
 
 pg.init()
 
@@ -10,7 +10,7 @@ pg.init()
 WIDTH = 600
 HEIGHT = 600
 DEPTH = 600
-CENTER_OFFSET = 100
+CENTER_OFFSET = 50
 
 # Colors
 gray = (203, 203, 203)
@@ -35,7 +35,7 @@ while running:
     pg.display.update()
 
     # Increment angle
-    theta += 0.01
+    theta += 0.005
 
 # Done! Time to quit.
 pg.quit()
