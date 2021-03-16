@@ -16,6 +16,7 @@ class Cube:
     
 
     def addPoint(self, point):
+        point = np.append(point, 1)
         self.nodes.append(point)
 
 
@@ -42,7 +43,7 @@ class Cube:
 
         x = -1 * self.w / 2
         y = -1 * self.h / 2
-        z = 0
+        z = -1 * self.d / 2
 
         translationMatrix1 = [[1, 0, 0, x],
                               [0, 1, 0, y],
@@ -50,9 +51,9 @@ class Cube:
                               [0, 0, 0, 1]]
 
         rotationMatrixY = [[cos, 0, sin, 0],
-                            [0, 1, 0, 0],
-                            [-sin, 0, cos, 0],
-                            [0, 0, 0, 1]]
+                           [0, 1, 0, 0],
+                           [-sin, 0, cos, 0],
+                           [0, 0, 0, 1]]
 
         translationMatrix2 = [[1, 0, 0, -x],
                               [0, 1, 0, -y],
@@ -67,13 +68,9 @@ class Cube:
 
 
     def applyTransformation(self):
-        self.pg.draw.circle(self.canvas, (0, 0, 0), (0, 0), 4, 0)
-
         for i in range(0, len(self.nodes)):
-            node = cp.deepcopy(self.nodes[i])
-            node = np.append(node, 1)
-
-            self.nodes[i] = np.matmul(self.compositeMatrix, node)
+            self.nodes[i] = np.matmul(self.compositeMatrix, self.nodes[i])
+            print(self.nodes[i])
 
 
     def displayCube(self):

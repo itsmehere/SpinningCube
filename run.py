@@ -15,7 +15,7 @@ CENTER_OFFSET = 50
 # Colors
 gray = (203, 203, 203)
 
-theta = 0
+theta = 0.1
 
 running = True
 
