@@ -12,34 +12,39 @@ HEIGHT = 600
 DEPTH = 600
 CENTER_OFFSET = 50
 
-theta = 0.1
-running = True
+def main():
 
-while running:
+    theta = 0.1
+    running = True
 
-    # Create Cube
-    cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
+    while running:
+        # Create Cube
+        cube = Cube(WIDTH, HEIGHT, DEPTH, pg)
 
-    # Create the points that form the cube
-    cube.generateVertices(CENTER_OFFSET)
-    cube.generateEdges(CENTER_OFFSET)
+        # Create the points that form the cube
+        cube.generateVertices(CENTER_OFFSET)
+        cube.generateEdges(CENTER_OFFSET)
 
-    # Create the transformation, apply it, and display it on the canvas
-    cube.createCompositeMatrix(theta)
-    cube.applyTransformation()
-    cube.displayCube()
-    
+        # Create the transformation, apply it, and display it on the canvas
+        cube.createCompositeMatrix(theta)
+        cube.applyTransformation()
+        cube.displayCube()
+        
 
-    # Check to see if the simulation has been exited
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
+        # Check to see if the simulation has been exited
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                running = False
 
-    # Update screen
-    pg.display.update()
+        # Update screen
+        pg.display.update()
 
-    # Increment angle
-    theta += 0.005
+        # Increment angle
+        theta += 0.005
 
-# Done! Time to quit.
-pg.quit()
+    # Done! Time to quit.
+    pg.quit()
+
+
+if __name__ == "__main__":
+    main()
