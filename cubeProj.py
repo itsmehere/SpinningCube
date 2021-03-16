@@ -55,12 +55,17 @@ class Cube:
                            [-sin, 0, cos, 0],
                            [0, 0, 0, 1]]
 
+        rotationMatrixX = [[1, 0, 0, 0],
+                           [0, cos, -sin, 0],
+                           [0, sin, cos, 0],
+                           [0, 0, 0, 1]]
+
         translationMatrix2 = [[1, 0, 0, -x],
                               [0, 1, 0, -y],
                               [0, 0, 1, -z],
                               [0, 0, 0, 1]]
 
-        transformations = [translationMatrix2, rotationMatrixY, translationMatrix1]
+        transformations = [translationMatrix2, rotationMatrixY, rotationMatrixX, translationMatrix1]
         self.compositeMatrix = transformations[0]
 
         for i in range(1, len(transformations)):
@@ -70,7 +75,7 @@ class Cube:
     def applyTransformation(self):
         for i in range(0, len(self.nodes)):
             self.nodes[i] = np.matmul(self.compositeMatrix, self.nodes[i])
-            print(self.nodes[i])
+            # print(self.nodes[i])
 
 
     def displayCube(self):
