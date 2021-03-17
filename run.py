@@ -23,11 +23,9 @@ def main():
     canvas.fill((0, 0, 0))
     pg.display.set_caption('Analysis Project - 3D Spinning Cube')
 
-
     # Create Cube
     cube = Cube(WIDTH, HEIGHT, DEPTH, pg, canvas)
     cube.generateVertices(CENTER_OFFSET)
-    
 
     running = True
     
