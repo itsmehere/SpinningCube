@@ -17,7 +17,8 @@ class Cube:
         self.nodes.append(point)
 
 
-    def generateVertices(self, CENTER_OFFSET):
+    def generatePoints(self, CENTER_OFFSET):
+        # Generate the vertices of the cube
         minX = (self.w / 2) - CENTER_OFFSET
         maxX = (self.w / 2) + CENTER_OFFSET
 
@@ -32,6 +33,8 @@ class Cube:
 
         for vertex in vertices:
             self.addPoint(vertex)
+
+        # Generate the edges of the cube
 
 
     def createCompositeMatrix(self, theta_x, theta_y, theta_z):

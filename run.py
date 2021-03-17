@@ -25,7 +25,7 @@ def main():
 
     # Create Cube
     cube = Cube(WIDTH, HEIGHT, DEPTH, pg, canvas)
-    cube.generateVertices(CENTER_OFFSET)
+    cube.generatePoints(CENTER_OFFSET)
 
     running = True
     
