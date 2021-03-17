@@ -29,7 +29,7 @@ class Cube:
         maxZ = (self.d / 2) + CENTER_OFFSET
 
         # Create cube vertices
-        vertices = np.array([(x, y, z) for x in (minX, maxX) for y in (minY, minX) for z in (minZ, maxZ)])
+        vertices = np.array([(x, y, z) for x in (minX, maxX) for y in (minY, maxY) for z in (minZ, maxZ)])
 
         for vertex in vertices:
             self.addPoint(vertex)
