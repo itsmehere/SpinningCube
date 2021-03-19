@@ -36,39 +36,29 @@ class Cube:
             self.addPoint(vertex)
 
         # Generate the  edges of the cube
-        edgePoints = []
         edgeDensity = 5
 
         # Z Axis Edges
         for i in range(0, len(vertices) - 1, 2):
-            pts = self.pointsBetween(vertices[i], vertices[i + 1], edgeDensity)
+            Zpts = self.pointsBetween(vertices[i], vertices[i + 1], edgeDensity)
             
-            for point in pts:
-                edgePoints.append(point)
-
-        for point in edgePoints:
-            self.addPoint(point)
-        
-        # Empty list
-        edgePoints = []
+            for point in Zpts:
+                self.addPoint(point)
 
         # Y Axis Edges
         for i in range(0, int(len(vertices) / 2)):
-            pts = self.pointsBetween(vertices[i], vertices[i + 4], edgeDensity)
+            Ypts = self.pointsBetween(vertices[i], vertices[i + 4], edgeDensity)
             
-            for point in pts:
-                edgePoints.append(point)
-
-        for point in edgePoints:
-            self.addPoint(point)
+            for point in Ypts:
+                self.addPoint(point)
 
         # X Axis Edges
-        pts = self.pointsBetween(vertices[0], vertices[2], edgeDensity)
-        pts.extend(self.pointsBetween(vertices[1], vertices[3], edgeDensity))
-        pts.extend(self.pointsBetween(vertices[4], vertices[6], edgeDensity))
-        pts.extend(self.pointsBetween(vertices[5], vertices[7], edgeDensity))
+        Xpts = self.pointsBetween(vertices[0], vertices[2], edgeDensity)
+        Xpts.extend(self.pointsBetween(vertices[1], vertices[3], edgeDensity))
+        Xpts.extend(self.pointsBetween(vertices[4], vertices[6], edgeDensity))
+        Xpts.extend(self.pointsBetween(vertices[5], vertices[7], edgeDensity))
             
-        for point in pts:
+        for point in Xpts:
             self.addPoint(point)
 
     
