@@ -1,1 +1,0 @@
-# Analysis H Project - A 3D Spinning Cube
