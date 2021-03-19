@@ -1,5 +1,6 @@
 import numpy as np
 import copy as cp
+import math
 
 class Cube:
     def __init__(self, width, height, depth, pg, canvas):
@@ -34,7 +35,65 @@ class Cube:
         for vertex in vertices:
             self.addPoint(vertex)
 
-        # Generate the edges of the cube
+        # Generate the  edges of the cube
+        edgePoints = []
+        edgeDensity = 5
+
+        # Z Axis Edges
+        for i in range(0, len(vertices) - 1, 2):
+            pts = self.pointsBetween(vertices[i], vertices[i + 1], edgeDensity)
+            
+            for point in pts:
+                edgePoints.append(point)
+
+        for point in edgePoints:
+            self.addPoint(point)
+        
+        # Empty list
+        edgePoints = []
+
+        # Y Axis Edges
+        for i in range(0, int(len(vertices) / 2)):
+            pts = self.pointsBetween(vertices[i], vertices[i + 4], edgeDensity)
+            
+            for point in pts:
+                edgePoints.append(point)
+
+        for point in edgePoints:
+            self.addPoint(point)
+
+        # X Axis Edges
+        pts = self.pointsBetween(vertices[0], vertices[2], edgeDensity)
+        pts.extend(self.pointsBetween(vertices[1], vertices[3], edgeDensity))
+        pts.extend(self.pointsBetween(vertices[4], vertices[6], edgeDensity))
+        pts.extend(self.pointsBetween(vertices[5], vertices[7], edgeDensity))
+            
+        for point in pts:
+            self.addPoint(point)
+
+    
+    def pointsBetween(self, p1, p2, density):
+        vector = p2 - p1
+        vectorScale = self.distBetween(p1, p2) / density
+        vector = vector / vectorScale
+
+        ptsBtn = []
+        currentPt = p1
+
+        while True:
+            currentPt = currentPt + vector
+
+            if str(currentPt) != str(p2):
+                ptsBtn.append(currentPt)
+            else:
+                break
+
+        return ptsBtn
+
+
+    def distBetween(self, p1, p2):
+        squaredDist = (p2[0] - p1[0]) ** 2 +  (p2[1] - p1[1]) ** 2 +  (p2[2] - p1[2]) ** 2
+        return math.sqrt(squaredDist)
 
 
     def createCompositeMatrix(self, theta_x, theta_y, theta_z):
@@ -76,7 +135,7 @@ class Cube:
                               [0, 0, 1, -z],
                               [0, 0, 0, 1]]
 
-        transformations = [translationMatrix2, rotationMatrixX, rotationMatrixY, translationMatrix1]
+        transformations = [translationMatrix2, rotationMatrixX, rotationMatrixY, rotationMatrixZ, translationMatrix1]
         self.compositeMatrix = transformations[0]
 
         for i in range(1, len(transformations)):
@@ -94,4 +153,4 @@ class Cube:
         self.canvas.fill((0, 0, 0))
 
         for node in self.nodes:
-            self.pg.draw.circle(self.canvas, (255, 255, 255), (int(node[0]), int(node[1])), 4, 0)
+            self.pg.draw.circle(self.canvas, (255, 255, 255), (int(node[0]), int(node[1])), 2, 0)
