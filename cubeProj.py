@@ -135,7 +135,6 @@ class Cube:
     def applyTransformation(self):
         for i in range(0, len(self.nodes)):
             self.nodes[i] = np.matmul(self.compositeMatrix, self.nodes[i])
-            # print(self.nodes[i])
 
 
     def displayCube(self):
