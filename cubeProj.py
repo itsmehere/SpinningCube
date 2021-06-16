@@ -36,7 +36,7 @@ class Cube:
             self.addPoint(vertex)
 
         # Generate the  edges of the cube
-        edgeDensity = 5
+        edgeDensity = 15
 
         # Z Axis Edges
         for i in range(0, len(vertices) - 1, 2):
@@ -64,8 +64,7 @@ class Cube:
     
     def pointsBetween(self, p1, p2, density):
         vector = p2 - p1
-        vectorScale = self.distBetween(p1, p2) / density
-        vector = vector / vectorScale
+        vector = vector / density
 
         ptsBtn = []
         currentPt = p1
